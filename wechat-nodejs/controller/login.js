@@ -36,31 +36,6 @@ class loginController {
         if (crypto.createHash('md5').update(password).digest('hex') === user.login_password) {
             req.session.user = user;
 
-            const userPosition = await models.position.findAll({
-                where: {
-                    id: {
-                        [Op.in]: user.position_id.split(',')
-                    }
-                },
-            });
-            let menuId = [];
-            if (userPosition.length > 0) {
-                userPosition.forEach(element => {
-                    menuId = _.union(menuId, element.menu_id.split(','));
-                });
-            }
-
-            const userMenu = await models.menu.findAll({
-                where: {
-                    id: {
-                        [Op.in]: menuId
-
-                    },
-                    is_enabled: 1,
-                },
-            });
-            req.session.menu = userMenu;
-
             logger.info("用户：" + loginname + "登录成功！");
             return res.send({
                 code: 200,

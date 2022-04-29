@@ -2,7 +2,7 @@
 const moment = require('moment');
 
 module.exports = (sequelize, DataTypes) => {
-    let User = sequelize.define('user', {
+    let Products = sequelize.define('products', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -110,5 +110,5 @@ module.exports = (sequelize, DataTypes) => {
         updatedAt: 'updated_time'
     });
 
-    return User;
+    return Products;
 };
