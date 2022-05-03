@@ -3,7 +3,7 @@
   <div class="app-avatar">
     <a-dropdown>
       <span class="ant-dropdown-link">
-        <a-avatar :src="userInfo.avatar" />
+        <!-- <a-avatar :src="userInfo.avatar" /> -->
         {{ userInfo?.username }}
         <DownOutlined />
       </span>

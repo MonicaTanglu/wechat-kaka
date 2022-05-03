@@ -1,97 +1,124 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
 // import { RouteRecordRaw } from 'vue-router'
-import Layout from '@/layout/index.vue'
+import Layout from "@/layout/index.vue";
 // import { markRyaw, h } from 'vue'
-
 
 export const constantRouterMap = [
   {
-    path: "/admin",
-    redirect: '/admin/index',
-    name: 'product',
-    meta: { title: '产品列表', icon: 'icon-detail' }
+    path: "/",
+    name: "client-products",
+    hidden: true,
+    meta: {
+      title: "产品列表",
+    },
+    component: () => import("@/views/client/list.vue"),
   },
   {
-    path: '/admin',
+    path: "/product/detail/:id",
+    name: "product-detail",
+    hidden: true,
+    component: () => import("@/views/client/detail.vue"),
+    meta: {
+      title: "产品详情",
+    },
+  },
+  {
+    path: "/product/preview/:id",
+    name: "product-preview",
+    hidden: true,
+    component: () => import("@/views/index/preview.vue"),
+    meta: {
+      title: "产品预览",
+    },
+  },
+  {
+    path: "/admin/index",
+    // redirect: '/admin/index',
+    name: "product",
+    meta: { title: "产品列表", icon: "icon-detail" },
+  },
+  {
+    path: "/admin",
     component: Layout,
     hidden: true,
-    name: 'Index',
+    name: "Index",
+    redirect: "/admin/index",
     meta: {
-      title: '产品管理',
-      icon: 'icon-detail',
+      title: "产品管理",
+      icon: "icon-detail",
     },
     children: [
       {
-        path: '/admin/index',
-        name: 'product',
-        component: () => import('@/views/index/index.vue'),
+        path: "/admin/index",
+        name: "product",
+        component: () => import("@/views/index/index.vue"),
         meta: {
-          title: '产品管理',
+          title: "产品管理",
         },
       },
     ],
   },
   {
-    path: '/admin/system',
+    path: "/admin/system",
     component: Layout,
-    name: 'system',
+    name: "system",
     meta: {
-      title: '系统设置',
-      icon: 'icon-setting'
+      title: "系统设置",
+      icon: "icon-setting",
     },
-    children: [{
-      path: '/admin/system/user',
-      name: '用户管理',
-      meta: {
-        title: '用户管理',
+    children: [
+      {
+        path: "/admin/system/user",
+        name: "用户管理",
+        meta: {
+          title: "用户管理",
+        },
+        component: () => import("@/views/system/user/index.vue"),
       },
-      component: () => import('@/views/system/user/index.vue')
-    }]
+    ],
     // redirect: '/admin/system/'
   },
   {
-    path: '/user/login',
+    path: "/user/login",
     hidden: true,
-    component: () => import('@/views/user/Login.vue')
+    component: () => import("@/views/user/Login.vue"),
   },
   {
-    path: '/error',
-    name: 'Error',
+    path: "/error",
+    name: "Error",
     hidden: true,
     component: Layout,
-    redirect: '/error/403',
+    redirect: "/error/403",
     meta: {
-      title: '错误页',
-      icon: 'error-warning-line',
+      title: "错误页",
+      icon: "error-warning-line",
     },
     children: [
       {
-        path: '403',
-        name: 'Error403',
-        component: () => import('@/views/error/403.vue'),
+        path: "403",
+        name: "Error403",
+        component: () => import("@/views/error/403.vue"),
         meta: {
-          title: '403',
-          icon: 'error-warning-line',
+          title: "403",
+          icon: "error-warning-line",
         },
       },
       {
-        path: '404',
-        name: 'Error404',
-        component: () => import('@/views/error/404.vue'),
+        path: "404",
+        name: "Error404",
+        component: () => import("@/views/error/404.vue"),
         meta: {
-          title: '404',
-          icon: 'error-warning-line',
+          title: "404",
+          icon: "error-warning-line",
         },
       },
     ],
-  }
-]
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes: constantRouterMap,
-})
+});
 
-
-
-export default router
+export default router;

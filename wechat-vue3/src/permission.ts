@@ -58,11 +58,7 @@ export function createRouterGuards(router: Router) {
     } else {
       next()
     }
-    // }
-
-    // } else {
-
-    // }
 
   })
 }
+

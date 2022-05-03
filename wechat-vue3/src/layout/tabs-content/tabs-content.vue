@@ -141,7 +141,7 @@ export default {
 .content {
   margin: 0 16px;
   background: #fff;
-  height: 800px;
+  height: calc(100vh - 120px);
   overflow-y: scroll;
 }
 </style>

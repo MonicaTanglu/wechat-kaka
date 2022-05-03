@@ -144,7 +144,7 @@ export default defineComponent({
         // if (!err) {
         // formState.checkKey = ;
         const res = await store.dispatch("user/Login", formState);
-        if (res) router.replace("/");
+        if (res) router.replace("/admin");
         // }
       });
     };
