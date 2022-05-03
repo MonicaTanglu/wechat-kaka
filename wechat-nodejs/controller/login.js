@@ -40,7 +40,7 @@ class loginController {
             return res.send({
                 code: 200,
                 message: '登录成功',
-                result: loginname,
+                result: user.real_name,
                 success: true,
                 timestamp: Date.now()
             })

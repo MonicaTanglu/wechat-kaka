@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: ''
         },
+        // 走马灯图片
+        swiperImage: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: ''
+        },
         /**最高额度 单位万元 */
         max_amount: {
             type: DataTypes.INTEGER,
@@ -92,16 +98,22 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: '0' 
         },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: '0' // 0未发布 1已发布
+        },
         created_time: {
             type: DataTypes.DATE,
             get() {
-                return moment(this.getDataValue('created_time')).format('YYYY-MM-DD HH:mm:ss');
+                return moment(this.getDataValue('created_time')).format('YYYY-MM-DD');
             }
         },
         updated_time: {
             type: DataTypes.DATE,
             get() {
-                return moment(this.getDataValue('updated_time')).format('YYYY-MM-DD HH:mm:ss');
+                // return moment(this.getDataValue('updated_time')).format('YYYY-MM-DD HH:mm:ss');
+                return moment(this.getDataValue('updated_time')).format('YYYY-MM-DD');
             }
         }
     }, {
