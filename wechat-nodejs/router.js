@@ -8,6 +8,7 @@ const router = require("express").Router(),
   auth = require("./middleware/auth"),
   login = require("./controller/login"),
   products = require("./controller/products"),
+  article = require("./controller/article"),
   system = require("./controller/system");
 
 // dict = require('./controller/dict'),
@@ -44,14 +45,33 @@ router.post(
 );
 router.put("/products/edit/:id", auth.loginRequired, products.updateProducts);
 router.get("/product/:id", products.findProduct);
-router.put("/products/follow/:id",auth.loginRequired,products.updateProductFollow)
+router.put(
+  "/products/follow/:id",
+  auth.loginRequired,
+  products.updateProductFollow
+);
 
-router.get("/products/swiper",products.getSwiperProduct),
-router.get("/products/list",products.getNoSwiperProduct),
-router.get("/product/detail/:id",products.findProduct),
-router.get("/product/preview/:id",auth.loginRequired,products.previewProduct)
+router.get("/products/swiper", products.getSwiperProduct),
+  router.get("/products/list", products.getNoSwiperProduct),
+  router.get("/product/detail/:id", products.findProduct),
+  router.get(
+    "/product/preview/:id",
+    auth.loginRequired,
+    products.previewProduct
+  );
+
+  router.get(
+    "/article/getArticlePage",
+    auth.loginRequired,
+    article.getArticlePage
+  );
+router.post("/article/add", auth.loginRequired, article.addArticle);
+router.post("/article/delete/:id", auth.loginRequired, article.deleteArticle);
+router.put("/article/edit/:id", auth.loginRequired, article.updateArticle);
+router.get("/article/:id", article.findArticle);
+
 // 未找到路由
-router.use((req, res) => {
-  res.render("404");
-});
+// router.use((req, res) => {
+//   res.render("404");
+// });
 module.exports = router; //导出

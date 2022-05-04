@@ -18,7 +18,7 @@ module.exports = {
             .set('@', resolve('src'))
         config.resolve.extensions.add('ts').add('tsx')
         config.plugin('html').tap(args => {
-            args[0].title = '管理系统'
+            args[0].title = '卡卡数科'
             return args
         })
     },

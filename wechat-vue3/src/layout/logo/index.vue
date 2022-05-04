@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
-    <img src="~@/assets/logo.png" alt="">
-    <h2 v-show="!collapsed" class="title">Vue3-admin</h2>
+    <img src="~@/assets/logo.jpg" alt="">
+    <h2 v-show="!collapsed" class="title">卡卡数科</h2>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
   img {
     height: 32px;
     margin-right: 8px;
+    border-radius: 100%;
   }
 
   .title {

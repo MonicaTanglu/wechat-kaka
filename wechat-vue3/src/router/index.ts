@@ -32,6 +32,15 @@ export const constantRouterMap = [
     },
   },
   {
+    path: "/product/preview/:id",
+    name: "product-preview",
+    hidden: true,
+    component: () => import("@/views/index/preview.vue"),
+    meta: {
+      title: "产品预览",
+    },
+  },
+  {
     path: "/admin/index",
     // redirect: '/admin/index',
     name: "product",
@@ -56,6 +65,7 @@ export const constantRouterMap = [
           title: "产品管理",
         },
       },
+      
     ],
   },
   {
@@ -75,13 +85,28 @@ export const constantRouterMap = [
         },
         component: () => import("@/views/system/user/index.vue"),
       },
+      {
+        path: "/admin/system/company",
+        name: "company",
+        component: () => import("@/views/system/company/index.vue"),
+        meta: {
+          title: "公司简介",
+        },
+      },
     ],
     // redirect: '/admin/system/'
   },
   {
     path: "/user/login",
     hidden: true,
+    meta: {title: '登录'},
     component: () => import("@/views/user/Login.vue"),
+  },
+  {
+    path: "/about",
+    hidden: true,
+    meta: {title: '公司简介'},
+    component: () => import("@/views/client/company.vue")
   },
   {
     path: "/error",

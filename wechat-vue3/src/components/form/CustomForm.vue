@@ -171,6 +171,17 @@
             :placeholder="'请输入' + item.label"
           />
         </a-form-item>
+        <a-form-item
+          v-else-if="item.type === 'tinymce'"
+          :label="item.label"
+          :name="item.key"
+          :rules="validatorRules[item.key].rules"
+        >
+          <tinymce
+            v-model:value="form[item.key]"
+            @input="tinyChange($event, item.key)"
+          ></tinymce>
+        </a-form-item>
 
         <!-- <a-form-item
           v-else-if="item.type === 'uploadImage'"
@@ -202,8 +213,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs, ref, nextTick } from "vue";
-
+import tinymce from "@/components/tinymce/Tinymce.vue";
 export default defineComponent({
+  components: { tinymce },
   props: {
     formArr: {
       type: Array,
@@ -305,6 +317,9 @@ export default defineComponent({
         };
       }
     };
+    const tinyChange = (v, key) => {
+      form[key] = v;
+    };
     setValidator(props.formArr);
     return {
       labelCol,
@@ -316,6 +331,7 @@ export default defineComponent({
       cancel,
       formRef,
       setForm,
+      tinyChange,
     };
   },
 });
